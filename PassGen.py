@@ -26,4 +26,3 @@ elif special_chars == 'n':
         temp = random.choice(string.ascii_letters + string.digits)
         passWord = passWord+temp
     print(passWord)
-    #test
