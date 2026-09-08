@@ -14,9 +14,6 @@ Recommendation_Work_Dice_List = ['Replace entire engine','Consult Mechanic','Per
                                  'Replace the ECM module, errr I mean the PCM, Maybe the BCM? honestly, who knows.','Contact priest',
                                     'put in 2 week notice', 'Clear code']
 
-DTCRoll = ''
-Diagroll = ''
-RecRoll =''
 
 def Diagnostic_Dice():
     import random
@@ -26,19 +23,35 @@ def Diagnostic_Dice():
     ##print(f"Test Click")
     return DTCRoll, Diagroll, RecRoll 
 
+def Run_Diags():
+    DTCRoll, Diagroll, RecRoll = Diagnostic_Dice()
+    DTC_label.config(text="Diagnostic Trouble Code: " + DTCRoll)
+    Diagroll_label.config(text="Diagnosis: " + Diagroll)
+    RecRoll_label.config(text="Recommendation: " + RecRoll)
 
 ## start Gui 
 window = tk.Tk()
 window.title("Vehicle Diagnostic Analyzer")
-window.geometry("800x600")
+window.geometry("800x700")
 
-
+## title
 title = tk.Label(window, text="Vehicle Diagnostic Analyzer", font=("Arial", 24, "bold"))
 title.pack(pady=20)
-button = tk.Button(window, text="Roll for Diagnostic", font=("Arial", 16), command=Diagnostic_Dice)
+button = tk.Button(window, text="Roll for Diagnostic", font=("Arial", 16), command=Run_Diags)
 button.pack(pady=20)
 
+#results 
+results_frame = tk.Frame(window)
+results_frame.pack(pady=20)
 
+DTC_label = tk.Label(results_frame, text="Diagnostic Trouble Code: ---", font=("Arial", 16), wraplength = 700)
+DTC_label.pack(pady=10)
+
+Diagroll_label = tk.Label(results_frame, text="Diagnosis: ---" , font=("Arial", 16), wraplength = 700)
+Diagroll_label.pack(pady=10)
+
+RecRoll_label = tk.Label(results_frame, text="Recommendation: ---" , font=("Arial", 16), wraplength = 700)
+RecRoll_label.pack(pady=10)
 
 window.mainloop()
 
