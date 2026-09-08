@@ -1,7 +1,13 @@
 from pathlib import Path
 import hashlib
+import tkinter as tk
+from tkinter import filedialog
 
-Folder = Path("C:/Users/jaymo/OneDrive/Documents/Python/Jerry-s_Python_PlayGround/")
+root = tk.Tk()
+root.withdraw()
+
+selectedFolder =filedialog.askdirectory(title="Select a Folder")
+Folder = Path(selectedFolder)
 list_of_Files = []
 temp = 0
 choice = ''
