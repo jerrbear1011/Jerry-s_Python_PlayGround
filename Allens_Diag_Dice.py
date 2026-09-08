@@ -1,3 +1,4 @@
+import tkinter as tk
 
 DTC_Dice_list = ['P9999 - Engine on fire','P0FUK - Technician Required','P0420 - Catalytic Converter Efficiency Below Threshold',
               'U2DUM - CAN Bus is being stupid','C1374 - Wheel doing wheel things','U0420 - Received invalid data from some dude named Jimmy',
@@ -22,8 +23,28 @@ def Diagnostic_Dice():
     Diagroll = random.choice(Diag_Dice_List)
     RecRoll = random.choice(Recommendation_Work_Dice_List)
     DTCRoll = random.choice(DTC_Dice_list)
+    ##print(f"Test Click")
+    return DTCRoll, Diagroll, RecRoll 
 
-    return DTCRoll, Diagroll, RecRoll, 
+
+## start Gui 
+window = tk.Tk()
+window.title("Vehicle Diagnostic Analyzer")
+window.geometry("800x600")
+
+
+title = tk.Label(window, text="Vehicle Diagnostic Analyzer", font=("Arial", 24, "bold"))
+title.pack(pady=20)
+button = tk.Button(window, text="Roll for Diagnostic", font=("Arial", 16), command=Diagnostic_Dice)
+button.pack(pady=20)
+
+
+
+window.mainloop()
+
+
+
+
 
 
 
