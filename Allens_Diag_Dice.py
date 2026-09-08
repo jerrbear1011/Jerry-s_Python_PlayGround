@@ -13,4 +13,17 @@ Recommendation_Work_Dice_List = ['Replace entire engine','Consult Mechanic','Per
                                  'Replace the ECM module, errr I mean the PCM, Maybe the BCM? honestly, who knows.','Contact priest',
                                     'put in 2 week notice', 'Clear code']
 
+DTCRoll = ''
+Diagroll = ''
+RecRoll =''
+
+def Diagnostic_Dice():
+    import random
+    Diagroll = random.choice(Diag_Dice_List)
+    RecRoll = random.choice(Recommendation_Work_Dice_List)
+    DTCRoll = random.choice(DTC_Dice_list)
+
+    return DTCRoll, Diagroll, RecRoll, 
+
+
 
