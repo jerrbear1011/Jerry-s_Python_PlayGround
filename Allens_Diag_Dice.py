@@ -39,7 +39,9 @@ window.geometry("800x500")
 #title.pack(pady=20)
 header_frame = tk.Frame(window, relief="raised", borderwidth=2)
 header_frame.pack(fill="x", padx=10, pady =10)
-title = tk.Label(header_frame, text="Vehicle Diagnostic Analyzer", font=("Arial", 20, "bold"))
+title = tk.Label(header_frame, 
+                 text="Vehicle Diagnostic Analyzer",
+                 font=("Arial", 20, "bold"))
 title.pack(pady=10)
 
 button = tk.Button(window, 
