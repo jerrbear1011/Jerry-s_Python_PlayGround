@@ -12,7 +12,7 @@ Diag_Dice_List = ['Car is haunted','Probably the alternator','Needs Premium Air'
 Recommendation_Work_Dice_List = ['Replace entire engine','Consult Mechanic','Perform ECU relearn',
                                  'Do not investigate further','Sacrifice a chicken','Disconnect battery for 10 minutes',
                                  'Replace the ECM module, errr I mean the PCM, Maybe the BCM? honestly, who knows.','Contact priest',
-                                    'put in 2 week notice', 'Clear code']
+                                 'put in 2 week notice', 'Clear code']
 
 
 def Diagnostic_Dice():
@@ -25,39 +25,97 @@ def Diagnostic_Dice():
 
 def Run_Diags():
     DTCRoll, Diagroll, RecRoll = Diagnostic_Dice()
-    DTC_label.config(text="Diagnostic Trouble Code: " + DTCRoll)
-    Diagroll_label.config(text="Diagnosis: " + Diagroll)
-    RecRoll_label.config(text="Recommendation: " + RecRoll)
+    DTC_label.config(text= DTCRoll)
+    Diagroll_label.config(text= Diagroll)
+    RecRoll_label.config(text=RecRoll)
 
 ## start Gui 
 window = tk.Tk()
 window.title("Vehicle Diagnostic Analyzer")
-window.geometry("800x700")
+window.geometry("800x500")
 
 ## title
-title = tk.Label(window, text="Vehicle Diagnostic Analyzer", font=("Arial", 24, "bold"))
-title.pack(pady=20)
-button = tk.Button(window, text="Roll for Diagnostic", font=("Arial", 16), command=Run_Diags)
-button.pack(pady=20)
+#title = tk.Label(window, text="Vehicle Diagnostic Analyzer", font=("Arial", 24, "bold"))
+#title.pack(pady=20)
+header_frame = tk.Frame(window, relief="raised", borderwidth=2)
+header_frame.pack(fill="x", padx=10, pady =10)
+title = tk.Label(header_frame, text="Vehicle Diagnostic Analyzer", font=("Arial", 20, "bold"))
+title.pack(pady=10)
+
+button = tk.Button(window, 
+                   text="Roll for Diagnostic", 
+                   font=("Arial", 16, "bold"),
+                   padx=20,
+                   pady=10,
+                   command=Run_Diags)
+button.pack(pady=(20, 0))
 
 #results 
-results_frame = tk.Frame(window)
-results_frame.pack(pady=20)
+results_frame = tk.LabelFrame(
+    window, 
+    text=" Diagnostic Results ", 
+    font = ("arial", 12, "bold"), 
+    padx=15, 
+    pady=15)
+results_frame.pack(fill= "x", padx=20, pady=(5,20))
+#results_frame.pack_propagate(False)
 
-DTC_label = tk.Label(results_frame, text="Diagnostic Trouble Code: ---", font=("Arial", 16), wraplength = 700)
-DTC_label.pack(pady=10)
+DTC_title = tk.Label(
+    results_frame,
+    text="Diagnostic Trouble Code",
+    font=("Arial", 11, "bold"),
+    anchor="w"
+)
+DTC_title.pack(fill="x")
+DTC_label = tk.Label(
+    results_frame,
+    text="---",
+    font=("Arial", 16),
+    anchor="w",
+    wraplength=700,
+    justify="left"
+)
+DTC_label.pack(fill="x", pady=(0, 15))
 
-Diagroll_label = tk.Label(results_frame, text="Diagnosis: ---" , font=("Arial", 16), wraplength = 700)
-Diagroll_label.pack(pady=10)
+Diag_title = tk.Label(
+    results_frame,
+    text="DIAGNOSIS",
+    font=("Arial", 11, "bold"),
+    anchor="w"
+)
+Diag_title.pack(fill="x")
+Diagroll_label = tk.Label(
+    results_frame,
+    text="---",
+    font=("Arial", 16),
+    anchor="w",
+    wraplength=700,
+    justify="left"
+)
+Diagroll_label.pack(fill="x", pady=(0, 15))
 
-RecRoll_label = tk.Label(results_frame, text="Recommendation: ---" , font=("Arial", 16), wraplength = 700)
-RecRoll_label.pack(pady=10)
+Rec_title = tk.Label(
+    results_frame,
+    text="RECOMMENDED REPAIR",
+    font=("Arial", 11, "bold"),
+    anchor="w"
+)
+Rec_title.pack(fill="x")
+RecRoll_label = tk.Label(
+    results_frame,
+    text="---",
+    font=("Arial", 16),
+    anchor="w",
+    wraplength=700,
+    justify="left"
+)
+RecRoll_label.pack(fill="x")
 
+Status_bar = tk.Label(
+    window,
+    text="Status: Ready",
+    relief="sunken",
+    anchor="w"
+)
+Status_bar.pack(side="bottom", fill="x")
 window.mainloop()
-
-
-
-
-
-
-
