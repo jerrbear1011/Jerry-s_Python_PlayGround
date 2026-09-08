@@ -24,9 +24,14 @@ for item in Folder.iterdir():
 
 print(list_of_Files)
 
-for item in list_of_Files:
-    print(f"{temp} {item}")
-    temp += 1
+if len(list_of_Files) == 0:
+    print("No files or folders found in the selected directory.")
+    
+    exit()
+else:
+    for item in list_of_Files:
+        print(f"{temp} {item}")
+        temp += 1
 
 choice = int(input("Enter the number of the file you want to check the hash of: "))
 
