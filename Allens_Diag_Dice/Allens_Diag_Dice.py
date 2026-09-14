@@ -3,9 +3,15 @@ from pathlib import Path
 
 DTC_Dice_list = []
 
+DTC_Dice_list_custom = []
+
 Diag_Dice_List = []
 
+Diag_Dice_List_Custom = []
+
 Recommendation_Work_Dice_List = []
+
+Recommendation_Work_Dice_List_Custom = []
 
 
 def Diagnostic_Dice():
@@ -46,12 +52,19 @@ def Add_Custom_Items():
     Recommendation_Work_Dice_List_path = Directory / 'CustomItems' / 'Recom_Work_Dice_List_Custom.txt'
     
     with open(DTC_Dice_list_path, 'r') as file:
-        DTC_Dice_list.extend([line.strip() for line in file])
+        item = [line.strip() for line in file]
+        DTC_Dice_list.extend(item)
+        DTC_Dice_list_custom.extend(item)
+      #  print(f"Custom DTC List: {DTC_Dice_list_custom}")
     with open(Diag_Dice_List_path, 'r') as file:
-        Diag_Dice_List.extend([line.strip() for line in file])
+        item = [line.strip() for line in file]
+        Diag_Dice_List.extend(item)
+        Diag_Dice_List_Custom.extend(item)
     with open(Recommendation_Work_Dice_List_path, 'r') as file:
-        Recommendation_Work_Dice_List.extend([line.strip() for line in file])
-    
+        item = [line.strip() for line in file]
+        Recommendation_Work_Dice_List.extend(item)
+        Recommendation_Work_Dice_List_Custom.extend(item)
+
 def ResetToFactory():
     global DTC_Dice_list, Diag_Dice_List, Recommendation_Work_Dice_List
     DTC_Dice_list.clear()
@@ -71,9 +84,108 @@ def ResetToFactory():
     LoadDefaultItems()
 
 
-LoadDefaultItems() ## testing remove later 
+LoadDefaultItems()  
 Add_Custom_Items() 
-ResetToFactory() ## testing remove later
+#ResetToFactory() ## testing remove later
+
+def openConfig():
+    config_window = tk.Toplevel(window)
+    config_window.title("Configuration")   
+    config_window.geometry("600x850")
+    dtc_frame = tk.LabelFrame(
+        config_window,
+        text=" Diagnostic Trouble Codes (DTC) ",
+        font=("Arial", 12, "bold"),
+        padx=10,
+        pady=10
+    )
+    dtc_listbox = tk.Listbox(
+        dtc_frame
+    )
+    dct_listbox = tk.Listbox(
+        dtc_frame
+    )
+    dct_listbox.pack(fill="both", expand=True)
+    dtc_frame.pack(fill="both", expand=True, padx=10, pady=10)
+    for item in DTC_Dice_list_custom:
+        dct_listbox.insert(tk.END, item)
+    add_DCT_button = tk.Button(
+        config_window,
+        text="Add DCT Item",
+       # command=Add_DTC
+    )
+    add_DCT_button.pack(pady=10)
+
+    del_DCT_button = tk.Button(
+            config_window,
+            text="Delete DCT Item",
+           # command=Add_DTC
+        )
+    del_DCT_button.pack(pady=10)
+
+    Diag_frame = tk.LabelFrame(
+        config_window,
+        text=" Diagnostic Items ",
+        font=("Arial", 12, "bold"),
+        padx=10,
+        pady=10
+    )
+    Diag_listbox = tk.Listbox(
+        Diag_frame
+    )
+    Diag_listbox = tk.Listbox(
+        Diag_frame
+    )
+    Diag_listbox.pack(fill="both", expand=True)
+    Diag_frame.pack(fill="both", expand=True, padx=10, pady=10)
+    for item in Diag_Dice_List_Custom:
+            Diag_listbox.insert(tk.END, item)
+
+    add_Diag_button = tk.Button(
+        config_window,
+        text="Add Diagnostic Item",
+       # command=Add_DTC
+    )
+    add_Diag_button.pack(pady=10)
+
+    del_Diag_button = tk.Button(
+            config_window,
+            text="Delete Diagnostic Item",
+           # command=Add_DTC
+        )
+    del_Diag_button.pack(pady=10)
+
+    Rec_frame = tk.LabelFrame(
+            config_window,
+            text=" Recommended Repairs ",
+            font=("Arial", 12, "bold"),
+            padx=10,
+            pady=10
+        )
+    Rec_listbox = tk.Listbox(
+        Rec_frame
+    )
+    Rec_listbox = tk.Listbox(
+        Rec_frame
+    )
+    Rec_listbox.pack(fill="both", expand=True)
+    Rec_frame.pack(fill="both", expand=True, padx=10, pady=10)
+    for item in Recommendation_Work_Dice_List_Custom:
+            Rec_listbox.insert(tk.END, item)
+
+    add_REC_button = tk.Button(
+        config_window,
+        text="Add Recommended Repair",
+       # command=Add_DTC
+    )
+    add_REC_button.pack(pady=10)
+
+    del_REC_button = tk.Button(
+        config_window,
+        text="Delete Recommended Repair",
+       # command=Add_DTC
+    )
+    del_REC_button.pack(pady=10)
 
 ## start Gui 
 window = tk.Tk()
@@ -166,4 +278,14 @@ Status_bar = tk.Label(
     anchor="w"
 )
 Status_bar.pack(side="bottom", fill="x")
+
+config_button = tk.Button(
+    window,
+    text="Configuration",
+    font=("Arial", 12),
+    padx=10,
+    pady=5,
+    command=openConfig
+)
+config_button.pack()
 window.mainloop()
