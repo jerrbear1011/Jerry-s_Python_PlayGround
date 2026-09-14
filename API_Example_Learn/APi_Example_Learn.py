@@ -28,7 +28,7 @@ def get_weather(city_name, api_key):
         feels_like = weather_data['main']['feels_like']
         humidity = weather_data['main']['humidity']
         description = weather_data['weather'][0]['description']
-        elevation = weather_data['main']['elevation']
+        elevation = weather_data['wind']['speed']
         
         # Print the formatted output
         print(f"🌍 Weather in {city_name.title()}:")
@@ -36,7 +36,8 @@ def get_weather(city_name, api_key):
         print(f"🤔 Feels Like: {feels_like}°F")
         print(f"💧 Humidity: {humidity}%")
         print(f"☁️  Condition: {description.capitalize()}")
-        print(f"⛰️  Elevation: {elevation} meters")
+       # print(f"⛰️  Elevation: {elevation} meters")
+        print(elevation)  # Note: OpenWeatherMap API does not provide elevation data in the current weather endpoint.
     except requests.exceptions.HTTPError:
         print("❌ City not found or invalid API key.")
     except Exception as e:
