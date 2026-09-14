@@ -1,18 +1,11 @@
 import tkinter as tk
+from pathlib import Path
 
-DTC_Dice_list = ['P9999 - Engine on fire','P0FUK - Technician Required','P0420 - Catalytic Converter Efficiency Below Threshold',
-              'U2DUM - CAN Bus is being stupid','C1374 - Wheel doing wheel things','U0420 - Received invalid data from some dude named Jimmy',
-              'P1602 - Vehicle has become sentient','Try again', "P0300: Random/Multiple Cylinder Misfire Detected",'P0171 - System Too Lean (Bank 1)','P0301 - Cylinder 1 Misfire Detected','P0302 - Cylinder 2 Misfire Detected',]
+DTC_Dice_list = []
 
-Diag_Dice_List = ['Car is haunted','Probably the alternator','Needs Premium Air','Has Temu Parts','Bad Ground','Electrical, good luck Allen',
-                  'Engine Appers to be made of Engine','Loose connector','Turn Signal is on','Tech is hungover','Vacuum Leak',
-                  'Vehicle is shy','Probably the Alternator','Probably NOT the Alternator','Previous Technician','Service writer just wants a commission',
-                  'Service writer needs to pay off cruise','Customer wants a loaner','Smells Like Money']
+Diag_Dice_List = []
 
-Recommendation_Work_Dice_List = ['Replace entire engine','Consult Mechanic','Perform ECU relearn',
-                                 'Do not investigate further','Sacrifice a chicken','Disconnect battery for 10 minutes',
-                                 'Replace the ECM module, errr I mean the PCM, Maybe the BCM? honestly, who knows.','Contact priest',
-                                 'put in 2 week notice', 'Clear code']
+Recommendation_Work_Dice_List = []
 
 
 def Diagnostic_Dice():
@@ -28,6 +21,59 @@ def Run_Diags():
     DTC_label.config(text= DTCRoll)
     Diagroll_label.config(text= Diagroll)
     RecRoll_label.config(text=RecRoll)
+
+def LoadDefaultItems():
+    global DTC_Dice_list, Diag_Dice_List, Recommendation_Work_Dice_List
+    Directory = Path(__file__).resolve().parent
+    DTC_Dice_list_path = Directory / 'ReadOnly' / 'DTC_Dice_list_RO.txt'
+    Diag_Dice_List_path = Directory / 'ReadOnly' / 'Diag_Dice_List_RO.txt'
+    Recommendation_Work_Dice_List_path = Directory / 'ReadOnly' / 'Recom_Work_Dice_List_RO.txt'
+
+    with open(DTC_Dice_list_path, 'r') as file:
+        DTC_Dice_list = [line.strip() for line in file]
+    with open(Diag_Dice_List_path, 'r') as file:
+        Diag_Dice_List = [line.strip() for line in file]
+    with open(Recommendation_Work_Dice_List_path, 'r') as file:
+        Recommendation_Work_Dice_List = [line.strip() for line in file]
+
+    #print (DTC_Dice_list, Diag_Dice_List, Recommendation_Work_Dice_List)
+
+def Add_Custom_Items():
+    global DTC_Dice_list, Diag_Dice_List, Recommendation_Work_Dice_List
+    Directory = Path(__file__).resolve().parent
+    DTC_Dice_list_path = Directory / 'CustomItems' / 'DTC_Dice_list_Custom.txt'
+    Diag_Dice_List_path = Directory / 'CustomItems' / 'Diag_Dice_List_Custom.txt'
+    Recommendation_Work_Dice_List_path = Directory / 'CustomItems' / 'Recom_Work_Dice_List_Custom.txt'
+    
+    with open(DTC_Dice_list_path, 'r') as file:
+        DTC_Dice_list.extend([line.strip() for line in file])
+    with open(Diag_Dice_List_path, 'r') as file:
+        Diag_Dice_List.extend([line.strip() for line in file])
+    with open(Recommendation_Work_Dice_List_path, 'r') as file:
+        Recommendation_Work_Dice_List.extend([line.strip() for line in file])
+    
+def ResetToFactory():
+    global DTC_Dice_list, Diag_Dice_List, Recommendation_Work_Dice_List
+    DTC_Dice_list.clear()
+    Diag_Dice_List.clear()
+    Recommendation_Work_Dice_List.clear()
+    Directory = Path(__file__).resolve().parent
+    DTC_Dice_list_path = Directory / 'CustomItems' / 'DTC_Dice_list_Custom.txt'
+    Diag_Dice_List_path = Directory / 'CustomItems' / 'Diag_Dice_List_Custom.txt'
+    Recommendation_Work_Dice_List_path = Directory / 'CustomItems' / 'Recom_Work_Dice_List_Custom.txt'
+
+    with open(DTC_Dice_list_path, 'w') as file:
+        pass
+    with open(Diag_Dice_List_path, 'w') as file:
+        pass    
+    with open(Recommendation_Work_Dice_List_path, 'w') as file:
+        pass
+    LoadDefaultItems()
+
+
+LoadDefaultItems() ## testing remove later 
+Add_Custom_Items() 
+ResetToFactory() ## testing remove later
 
 ## start Gui 
 window = tk.Tk()
