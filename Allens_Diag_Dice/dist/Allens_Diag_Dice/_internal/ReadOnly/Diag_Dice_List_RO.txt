@@ -1,0 +1,12 @@
+P9999 - Engine on fire
+P0FUK - Technician Required
+P0420 - Catalytic Converter Efficiency Below Threshold
+U2DUM - CAN Bus is being stupid
+C1374 - Wheel doing wheel things
+U0420 - Received invalid data from some dude named Jimmy
+P1602 - Vehicle has become sentient
+Try again
+P0300: Random/Multiple Cylinder Misfire Detected
+P0171 - System Too Lean (Bank 1)
+P0301 - Cylinder 1 Misfire Detected
+P0302 - Cylinder 2 Misfire Detected
