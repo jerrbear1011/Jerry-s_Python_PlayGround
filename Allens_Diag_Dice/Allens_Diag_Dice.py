@@ -74,6 +74,8 @@ def Add_Custom_Items():
         Recommendation_Work_Dice_List_Custom.extend(item)
 
 def ResetToFactory():
+    import sys
+    import os
     global DTC_Dice_list, Diag_Dice_List, Recommendation_Work_Dice_List
     DTC_Dice_list.clear()
     Diag_Dice_List.clear()
@@ -90,6 +92,7 @@ def ResetToFactory():
     with open(Recommendation_Work_Dice_List_path, 'w') as file:
         pass
     LoadDefaultItems()
+    os.execl(sys.executable, sys.executable, *sys.argv)
 
 
 def save_dtc(new_dtc, dtc_listbox, add_window):
@@ -155,16 +158,16 @@ def deleteItem(ListSelect, Listbox):
 
     IdexSelect = selected[0]
 
-    print("BEFORE DELETE")
-    print("Listbox size:", Listbox.size())
-    print("Python list size:", len(targetList))
-    print("Selected index:", IdexSelect)
+    #print("BEFORE DELETE")
+    #print("Listbox size:", Listbox.size())
+    #print("Python list size:", len(targetList))
+    #print("Selected index:", IdexSelect)
 
     del targetList[IdexSelect]
 
-    print("AFTER DELETE")
-    print("Listbox size:", Listbox.size())
-    print("Python list size:", len(targetList))
+    #print("AFTER DELETE")
+    #print("Listbox size:", Listbox.size())
+    #print("Python list size:", len(targetList))
 
     with open(targetPath, "w") as file:
         for item in targetList:
@@ -177,9 +180,9 @@ def deleteItem(ListSelect, Listbox):
     IdexSelect = selected[0]
     #del targetList[IdexSelect]
     Listbox.delete(IdexSelect)
-    print("Listbox size:", Listbox.size())
-    print("Python list size:", len(targetList))
-    print("Selected index:", IdexSelect)
+    #print("Listbox size:", Listbox.size())
+    #print("Python list size:", len(targetList))
+    #print("Selected index:", IdexSelect)
 
 
 LoadDefaultItems()  
@@ -370,6 +373,13 @@ def openConfig():
        # command=Add_DTC
     #)
     #del_REC_button.pack(pady=10)
+
+    reset_button = tk.Button(
+    config_window,
+    text="Reset to Factory",
+    command=ResetToFactory
+)
+    reset_button.pack(pady=10)
 
 ## start Gui 
 window = tk.Tk()
