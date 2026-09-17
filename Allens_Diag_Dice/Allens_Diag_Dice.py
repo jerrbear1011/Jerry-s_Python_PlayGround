@@ -123,10 +123,8 @@ def save_Rec(new_rec, diag_listbox, add_window):
 def ButtonTest():
     print("click")
 
-def deleteItem(ListSelect, IdexSelect):
-    Directory = Path(__file__).resolve().parent
 
-def deleteItem(ListSelect, IdexSelect):
+def deleteItem(ListSelect, Listbox):
     ListsOfLists = [DTC_Dice_list_custom, Diag_Dice_List_Custom, Recommendation_Work_Dice_List_Custom]
     Directory = Path(__file__).resolve().parent
     FilePaths = [
@@ -137,15 +135,22 @@ def deleteItem(ListSelect, IdexSelect):
 
     targetList = ListsOfLists[ListSelect]
     targetPath = FilePaths[ListSelect] 
+
     if not targetList:
-        return 
+        return
+
+    selected = Listbox.curselection()
+
+    if not selected:
+        return
+
+    IdexSelect = selected[0]
         
     del targetList[IdexSelect]
 
     with open(targetPath, "w") as file:
         for item in targetList:
             file.write(f"{item}\n")
-            
 
 
 LoadDefaultItems()  
@@ -230,7 +235,7 @@ def openConfig():
     #DTC_edit_button = tk.Button(DTC_button_frame, text="Edit", command=ButtonTest)
     #DTC_edit_button.pack(side="left")
 
-    DTC_delete_button = tk.Button(DTC_button_frame, text="Delete", command=ButtonTest)
+    DTC_delete_button = tk.Button(DTC_button_frame, text="Delete", command=lambda: deleteItem(0, dtc_listbox))
     DTC_delete_button.pack(side="left")
 
 
@@ -273,7 +278,7 @@ def openConfig():
     #Diag_edit_button = tk.Button(Diag_button_frame, text="Edit", command=ButtonTest)
     #Diag_edit_button.pack(side="left")
 
-    Diag_delete_button = tk.Button(Diag_button_frame, text="Delete", command=ButtonTest)
+    Diag_delete_button = tk.Button(Diag_button_frame, text="Delete", command=lambda: deleteItem(1, Diag_listbox))
     Diag_delete_button.pack(side="left")
 
 
@@ -319,7 +324,7 @@ def openConfig():
     #rec_edit_button = tk.Button(rec_button_frame, text="Edit", command=ButtonTest)
     #rec_edit_button.pack(side="left")
 
-    rec_delete_button = tk.Button(rec_button_frame, text="Delete", command=ButtonTest)
+    rec_delete_button = tk.Button(rec_button_frame, text="Delete", command=lambda: deleteItem(2, Rec_listbox))
     rec_delete_button.pack(side="left")
     
 
