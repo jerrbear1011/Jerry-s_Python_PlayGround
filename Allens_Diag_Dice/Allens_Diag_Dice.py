@@ -152,6 +152,14 @@ def deleteItem(ListSelect, Listbox):
         for item in targetList:
             file.write(f"{item}\n")
 
+    selected = Listbox.curselection()
+
+    if not selected:
+        return
+    IdexSelect = selected[0]
+    del targetList[IdexSelect]
+    Listbox.delete(IdexSelect)
+
 
 LoadDefaultItems()  
 Add_Custom_Items() 
