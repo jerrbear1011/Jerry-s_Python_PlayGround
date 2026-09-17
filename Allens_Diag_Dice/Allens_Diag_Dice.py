@@ -123,9 +123,34 @@ def save_Rec(new_rec, diag_listbox, add_window):
 def ButtonTest():
     print("click")
 
+def deleteItem(ListSelect, IdexSelect):
+    Directory = Path(__file__).resolve().parent
+
+def deleteItem(ListSelect, IdexSelect):
+    ListsOfLists = [DTC_Dice_list_custom, Diag_Dice_List_Custom, Recommendation_Work_Dice_List_Custom]
+    Directory = Path(__file__).resolve().parent
+    FilePaths = [
+        Directory / 'CustomItems' / 'DTC_Dice_list_custom.txt',
+        Directory / 'CustomItems' / 'Diag_Dice_List_Custom.txt',
+        Directory / 'CustomItems' / 'Recom_Work_Dice_List_Custom.txt'
+    ]
+
+    targetList = ListsOfLists[ListSelect]
+    targetPath = FilePaths[ListSelect] 
+    if not targetList:
+        return 
+        
+    del targetList[IdexSelect]
+
+    with open(targetPath, "w") as file:
+        for item in targetList:
+            file.write(f"{item}\n")
+            
+
 
 LoadDefaultItems()  
 Add_Custom_Items() 
+#deleteItem(1,0) ## testing remove later
 #ResetToFactory() ## testing remove later
 
 
@@ -202,8 +227,8 @@ def openConfig():
                                 command=lambda: add_dtc(config_window, dtc_listbox))
     DTC_add_button.pack(side="left")
 
-    DTC_edit_button = tk.Button(DTC_button_frame, text="Edit", command=ButtonTest)
-    DTC_edit_button.pack(side="left")
+    #DTC_edit_button = tk.Button(DTC_button_frame, text="Edit", command=ButtonTest)
+    #DTC_edit_button.pack(side="left")
 
     DTC_delete_button = tk.Button(DTC_button_frame, text="Delete", command=ButtonTest)
     DTC_delete_button.pack(side="left")
@@ -245,8 +270,8 @@ def openConfig():
     Diag_add_button = tk.Button(Diag_button_frame, text="Add", command=lambda: add_diag(config_window, Diag_listbox))
     Diag_add_button.pack(side="left")
 
-    Diag_edit_button = tk.Button(Diag_button_frame, text="Edit", command=ButtonTest)
-    Diag_edit_button.pack(side="left")
+    #Diag_edit_button = tk.Button(Diag_button_frame, text="Edit", command=ButtonTest)
+    #Diag_edit_button.pack(side="left")
 
     Diag_delete_button = tk.Button(Diag_button_frame, text="Delete", command=ButtonTest)
     Diag_delete_button.pack(side="left")
@@ -291,8 +316,8 @@ def openConfig():
     rec_add_button = tk.Button(rec_button_frame, text="Add", command=lambda: add_rec(config_window, Rec_listbox))
     rec_add_button.pack(side="left")
 
-    rec_edit_button = tk.Button(rec_button_frame, text="Edit", command=ButtonTest)
-    rec_edit_button.pack(side="left")
+    #rec_edit_button = tk.Button(rec_button_frame, text="Edit", command=ButtonTest)
+    #rec_edit_button.pack(side="left")
 
     rec_delete_button = tk.Button(rec_button_frame, text="Delete", command=ButtonTest)
     rec_delete_button.pack(side="left")
