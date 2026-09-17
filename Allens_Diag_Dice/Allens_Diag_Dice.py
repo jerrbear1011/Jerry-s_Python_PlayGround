@@ -104,7 +104,7 @@ def save_dtc(new_dtc, dtc_listbox, add_window):
         add_window.destroy()
         with open(DTC_Dice_list_path, 'a') as file:
             file.write(new_dtc.strip()+ "\n")
-    DTC_Dice_list.clear()
+    DTC_Dice_list_custom.clear()
     Add_Custom_Items()
 
 def save_diag(new_diag, diag_listbox, add_window):
