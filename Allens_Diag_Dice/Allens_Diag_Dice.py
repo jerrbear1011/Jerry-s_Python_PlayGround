@@ -109,19 +109,35 @@ def openConfig():
     dtc_frame.pack(fill="both", expand=True, padx=10, pady=10)
     for item in DTC_Dice_list_custom:
         dct_listbox.insert(tk.END, item)
-    add_DCT_button = tk.Button(
-        config_window,
-        text="Add DCT Item",
-       # command=Add_DTC
-    )
-    add_DCT_button.pack(pady=10)
 
-    del_DCT_button = tk.Button(
-            config_window,
-            text="Delete DCT Item",
-           # command=Add_DTC
-        )
-    del_DCT_button.pack(pady=10)
+
+    DTC_button_frame = tk.Frame(dtc_frame)
+    DTC_button_frame.pack()
+
+    DTC_add_button = tk.Button(DTC_button_frame, text="Add",command=ResetToFactory)
+    DTC_add_button.pack(side="left")
+
+    DTC_edit_button = tk.Button(DTC_button_frame, text="Edit")
+    DTC_edit_button.pack(side="left")
+
+    DTC_delete_button = tk.Button(DTC_button_frame, text="Delete")
+    DTC_delete_button.pack(side="left")
+
+
+    
+    #add_DCT_button = tk.Button(
+     #   config_window,
+      #  text="Add DCT Item",
+       # command=Add_DTC
+    #)
+    #add_DCT_button.pack(pady=10)
+
+    #del_DCT_button = tk.Button(
+      #      config_window,
+    #        text="Delete DCT Item",
+     #      # command=Add_DTC
+    #    )
+    #del_DCT_button.pack(pady=10)
 
     Diag_frame = tk.LabelFrame(
         config_window,
@@ -141,19 +157,33 @@ def openConfig():
     for item in Diag_Dice_List_Custom:
             Diag_listbox.insert(tk.END, item)
 
-    add_Diag_button = tk.Button(
-        config_window,
-        text="Add Diagnostic Item",
-       # command=Add_DTC
-    )
-    add_Diag_button.pack(pady=10)
+    Diag_button_frame = tk.Frame(Diag_frame)
+    Diag_button_frame.pack()
 
-    del_Diag_button = tk.Button(
-            config_window,
-            text="Delete Diagnostic Item",
-           # command=Add_DTC
-        )
-    del_Diag_button.pack(pady=10)
+    Diag_add_button = tk.Button(Diag_button_frame, text="Add")
+    Diag_add_button.pack(side="left")
+
+    Diag_edit_button = tk.Button(Diag_button_frame, text="Edit")
+    Diag_edit_button.pack(side="left")
+
+    Diag_delete_button = tk.Button(Diag_button_frame, text="Delete")
+    Diag_delete_button.pack(side="left")
+
+
+
+    #add_Diag_button = tk.Button(
+    #    config_window,
+    #    text="Add Diagnostic Item",
+       # command=Add_DTC
+    #)
+    #add_Diag_button.pack(pady=10)
+
+    #del_Diag_button = tk.Button(
+    #        config_window,
+    #        text="Delete Diagnostic Item",
+    #       # command=Add_DTC
+    #    )
+    #del_Diag_button.pack(pady=10)
 
     Rec_frame = tk.LabelFrame(
             config_window,
@@ -173,19 +203,34 @@ def openConfig():
     for item in Recommendation_Work_Dice_List_Custom:
             Rec_listbox.insert(tk.END, item)
 
-    add_REC_button = tk.Button(
-        config_window,
-        text="Add Recommended Repair",
-       # command=Add_DTC
-    )
-    add_REC_button.pack(pady=10)
 
-    del_REC_button = tk.Button(
-        config_window,
-        text="Delete Recommended Repair",
+
+    rec_button_frame = tk.Frame(Rec_frame)
+    rec_button_frame.pack()
+
+    rec_add_button = tk.Button(rec_button_frame, text="Add")
+    rec_add_button.pack(side="left")
+
+    rec_edit_button = tk.Button(rec_button_frame, text="Edit")
+    rec_edit_button.pack(side="left")
+
+    rec_delete_button = tk.Button(rec_button_frame, text="Delete")
+    rec_delete_button.pack(side="left")
+    
+
+   # add_REC_button = tk.Button(
+   #     config_window,
+   #     text="Add Recommended Repair",
        # command=Add_DTC
-    )
-    del_REC_button.pack(pady=10)
+    #)
+    #add_REC_button.pack(pady=10)
+
+    #del_REC_button = tk.Button(
+    #    config_window,
+    #    text="Delete Recommended Repair",
+       # command=Add_DTC
+    #)
+    #del_REC_button.pack(pady=10)
 
 ## start Gui 
 window = tk.Tk()
