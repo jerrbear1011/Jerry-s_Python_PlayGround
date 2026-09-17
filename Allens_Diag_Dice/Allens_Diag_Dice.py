@@ -45,11 +45,19 @@ def LoadDefaultItems():
     #print (DTC_Dice_list, Diag_Dice_List, Recommendation_Work_Dice_List)
 
 def Add_Custom_Items():
+
     global DTC_Dice_list, Diag_Dice_List, Recommendation_Work_Dice_List
+
+    DTC_Dice_list_custom.clear()
+    Diag_Dice_List_Custom.clear()
+    Recommendation_Work_Dice_List_Custom.clear()
+
     Directory = Path(__file__).resolve().parent
     DTC_Dice_list_path = Directory / 'CustomItems' / 'DTC_Dice_list_Custom.txt'
     Diag_Dice_List_path = Directory / 'CustomItems' / 'Diag_Dice_List_Custom.txt'
     Recommendation_Work_Dice_List_path = Directory / 'CustomItems' / 'Recom_Work_Dice_List_Custom.txt'
+
+    
     
     with open(DTC_Dice_list_path, 'r') as file:
         item = [line.strip() for line in file]
@@ -125,6 +133,7 @@ def ButtonTest():
 
 
 def deleteItem(ListSelect, Listbox):
+
     ListsOfLists = [DTC_Dice_list_custom, Diag_Dice_List_Custom, Recommendation_Work_Dice_List_Custom]
     Directory = Path(__file__).resolve().parent
     FilePaths = [
@@ -145,8 +154,17 @@ def deleteItem(ListSelect, Listbox):
         return
 
     IdexSelect = selected[0]
-        
+
+    print("BEFORE DELETE")
+    print("Listbox size:", Listbox.size())
+    print("Python list size:", len(targetList))
+    print("Selected index:", IdexSelect)
+
     del targetList[IdexSelect]
+
+    print("AFTER DELETE")
+    print("Listbox size:", Listbox.size())
+    print("Python list size:", len(targetList))
 
     with open(targetPath, "w") as file:
         for item in targetList:
@@ -157,8 +175,11 @@ def deleteItem(ListSelect, Listbox):
     if not selected:
         return
     IdexSelect = selected[0]
-    del targetList[IdexSelect]
+    #del targetList[IdexSelect]
     Listbox.delete(IdexSelect)
+    print("Listbox size:", Listbox.size())
+    print("Python list size:", len(targetList))
+    print("Selected index:", IdexSelect)
 
 
 LoadDefaultItems()  
